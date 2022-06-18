@@ -1,0 +1,20 @@
+on:
+  push:
+    branches:
+      - main
+name: 🚀 Deploy Portfolio PROD
+jobs:
+  web-deploy:
+    name: 🎉 Deploy
+    runs-on: ubuntu-latest
+    steps:
+      - name: 🚚 Get latest code
+        uses: actions/checkout@v2
+
+      - name: 📂 Sync files
+        uses: SamKirkland/FTP-Deploy-Action@4.3.0
+        with:
+          server: 154.12.237.134
+          username: MITY
+          password: NFAxZUX2M6
+          server-dir: /var/www/portfolio.mity.dev
