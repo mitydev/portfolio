@@ -17,4 +17,4 @@ jobs:
           server: 154.12.237.134
           username: MITY
           password: NFAxZUX2M6
-          server-dir: /var/www/portfolio.mity.dev
+          server-dir: /var/www/portfolio.mity.dev/
