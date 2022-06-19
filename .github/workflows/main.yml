@@ -2,7 +2,6 @@ on:
   push:
     branches:
       - master
-      - main
 jobs:
   FTP-Deploy-Action:
     name: FTP-Deploy-Action
@@ -16,10 +15,11 @@ jobs:
       - name: FTP-Deploy-Action
         uses: SamKirkland/FTP-Deploy-Action@2.0.0
         env:
-          FTP_SERVER: 154.12.237.134
-          FTP_USERNAME: mity
-          FTP_PASSWORD: NFAxZUX2M6
+          FTP_SERVER: ${{ secrets.FTP_SERVER }}
+          FTP_USERNAME: ${{ secrets.FTP_USERNAME }}
+          FTP_PASSWORD: ${{ secrets.FTP_PASSWORD }}
           LOCAL_DIR: build
           METHOD: sftp
           PORT: 22
           server-dir: /var/www/portfolio.mity.dev/
+          ARGS: --delete
