@@ -22,5 +22,5 @@ jobs:
           LOCAL_DIR: build
           METHOD: sftp
           PORT: 22
-          ARGS: ls -l
+          ARGS: '-o ConnectTimeout=5'
           server-dir: /var/www/portfolio.mity.dev/
