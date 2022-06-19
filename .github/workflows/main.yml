@@ -22,5 +22,5 @@ jobs:
           LOCAL_DIR: build
           METHOD: sftp
           PORT: 22
-          ARGS: --delete
+          ARGS: ls -l
           server-dir: /var/www/portfolio.mity.dev/
