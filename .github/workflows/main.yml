@@ -2,19 +2,19 @@ on:
   push:
     branches:
       - main
-name: 🚀 Deploy Portfolio PROD
 jobs:
-  web-deploy:
-    name: 🎉 Deploy
+  deploy_job:
     runs-on: ubuntu-latest
+    name: deploy
     steps:
-      - name: 🚚 Get latest code
+      - name: Checkout
         uses: actions/checkout@v2
-
-      - name: 📂 Sync files
-        uses: SamKirkland/FTP-Deploy-Action@4.3.0
+      - name: deploy file
+        uses: wlixcc/SFTP-Deploy-Action@v1.0
         with:
-          server: 154.12.237.134
-          username: MITY
-          password: NFAxZUX2M6
-          server-dir: /var/www/portfolio.mity.dev/
+          username: 'MITY'
+          server: '154.12.237.134'
+          ssh_private_key: ${{ secrets.SSH_PRIVATE_KEY }}
+          local_path: './var/www/portfolio.mity.dev/'
+          remote_path: '/var/www/portfolio.mity.dev/'
+          args: '-o ConnectTimeout=5'
