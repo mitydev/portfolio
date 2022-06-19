@@ -1,25 +1,21 @@
+name: portfolio.mity.dev CI
 on:
   push:
     branches:
-      - master
+      - main
+
 jobs:
-  FTP-Deploy-Action:
-    name: FTP-Deploy-Action
+  build:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@master
-
-      - name: List output files
-        run: ls
-
-      - name: FTP-Deploy-Action
-        uses: SamKirkland/FTP-Deploy-Action@2.0.0
+      - name: Checkout do Repo
+        uses: actions/checkout@1
+      - name: Deploy para meu host
+        uses: easingthemes/ssh-deploy@main
         env:
-          FTP_SERVER: ${{ secrets.FTP_SERVER }}
-          FTP_USERNAME: ${{ secrets.FTP_USERNAME }}
-          FTP_PASSWORD: ${{ secrets.FTP_PASSWORD }}
-          LOCAL_DIR: build
-          METHOD: sftp
-          PORT: 22
-          server-dir: /var/www/portfolio.mity.dev/
-          ARGS: --delete
+          SSH_PRIVATE_KEY: ${{ secrets.SERVER_SSH_KEY }}
+          ARGS: "-rltgoDzvO --delete"
+          REMOTE_HOST: ${{ secrets.REMOTE_HOST }}
+          REMOTE_USER: ${{ secrets.REMOTE_USER }}
+          REMOTE_PORT: ${{ secrets.SERVER_PORT }}
+          TARGET: ${{ secrets.REMOTE_TARGET }}
